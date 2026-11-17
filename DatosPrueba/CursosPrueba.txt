@@ -1,0 +1,76 @@
+DATOS DE PRUEBA - MiPromedio
+Investigación .NET MAUI - Desarrollo de Software IV
+UCR Sede del Pacífico
+
+Estos son los cursos que se usan en la demostración.
+Se agregan uno por uno con el botón "+ Agregar curso".
+
+--------------------------------------------------------------------------------
+CURSOS A INGRESAR
+--------------------------------------------------------------------------------
+
+Curso 1
+  Nombre:   Desarrollo de Software IV
+  Créditos: 4
+  Nota:     93
+
+Curso 2
+  Nombre:   Bases de Datos II
+  Créditos: 4
+  Nota:     76,5      (se escribe con coma para probar que la acepta)
+
+Curso 3
+  Nombre:   Redes de Computadoras
+  Créditos: 4
+  Nota:     63
+
+Curso 4
+  Nombre:   Álgebra Lineal
+  Créditos: 4
+  Nota:     54
+
+--------------------------------------------------------------------------------
+LO QUE DEBE MOSTRAR CADA CURSO EN LA LISTA
+--------------------------------------------------------------------------------
+
+Curso                       Nota obtenida   Nota final   Estado
+Desarrollo de Software IV   93              95           Aprobado (verde)
+Bases de Datos II           76,5            75           Aprobado (verde)
+Redes de Computadoras       63              65           Ampliación (naranja)
+Álgebra Lineal              54              55           Reprobado (rojo)
+
+Cómo se redondea: al múltiplo de 5 más cercano, y si queda justo en medio sube.
+  93   -> 95  (sube)
+  76,5 -> 75  (baja)
+  63   -> 65  (sube)
+  54   -> 55  (sube)
+
+Estados:
+  70 o más     = Aprobado
+  60 o 65      = Ampliación
+  menos de 60  = Reprobado
+
+--------------------------------------------------------------------------------
+LO QUE DEBE MOSTRAR LA TARJETA AZUL DEL PROMEDIO
+--------------------------------------------------------------------------------
+
+Promedio ponderado:  72,50
+Resumen:             4 cursos - 16 créditos
+
+Cálculo:
+  (95 x 4) + (75 x 4) + (65 x 4) + (55 x 4) = 380 + 300 + 260 + 220 = 1160
+  1160 / 16 créditos = 72,50
+
+--------------------------------------------------------------------------------
+PRUEBA EXTRA CON CRÉDITOS DIFERENTES (opcional)
+--------------------------------------------------------------------------------
+
+Sirve para mostrar que el promedio es ponderado y no un promedio normal.
+
+  Curso A   Créditos: 4   Nota: 90   -> Nota final 90
+  Curso B   Créditos: 2   Nota: 60   -> Nota final 60
+
+Promedio ponderado: (90 x 4 + 60 x 2) / 6 = 480 / 6 = 80,00
+Promedio normal sería: (90 + 60) / 2 = 75
+El curso de 4 créditos pesa más, por eso el ponderado da 80,00.
+Resumen: 2 cursos - 6 créditos
