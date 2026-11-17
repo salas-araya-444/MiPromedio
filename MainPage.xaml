@@ -1,0 +1,191 @@
+﻿<ContentPage x:Class="MiPromedio.MainPage"
+             xmlns:local="clr-namespace:MiPromedio"
+             Title="Mi Promedio"
+             BackgroundColor="{StaticResource FondoApp}">
+
+    <!-- Título centrado en la barra azul de arriba -->
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Mi Promedio"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto"
+          Padding="20"
+          RowSpacing="16">
+
+        <!-- Fila 0: logo de la UCR y texto de la investigación -->
+        <VerticalStackLayout Grid.Row="0" Spacing="6">
+            <Image Source="logo_ucr.png"
+                   HeightRequest="155"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center" />
+            <Label Text="Investigación Académica - Desarrollo de Software IV"
+                   FontSize="12"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <!-- Fila 1: tarjeta azul con el promedio ponderado, todo centrado -->
+        <Border Grid.Row="1"
+                BackgroundColor="{StaticResource Primary}"
+                StrokeThickness="0"
+                Padding="20">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Promedio ponderado del semestre"
+                       FontSize="14"
+                       TextColor="{StaticResource PrimaryDark}"
+                       HorizontalTextAlignment="Center" />
+
+                <!-- Aquí se muestra el promedio, se actualiza desde el código -->
+                <Label x:Name="LabelPromedio"
+                       Text="0,00"
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center" />
+
+                <!-- Cantidad de cursos y total de créditos -->
+                <Label x:Name="LabelResumen"
+                       Text="0 cursos - 0 créditos"
+                       FontSize="14"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Fila 2: título "Mis cursos" y la lista, juntos y con poco espacio entre ellos -->
+        <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="6">
+
+            <!-- Título de la lista, centrado -->
+            <Label Grid.Row="0"
+                   Text="Mis cursos"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource AzulOscuro}"
+                   HorizontalOptions="Center" />
+
+            <!-- Lista dinámica de cursos -->
+            <CollectionView Grid.Row="1"
+                            x:Name="ListaCursos"
+                            SelectionMode="None">
+
+                <!-- Espacio entre cada tarjeta de la lista -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <!-- Lo que se muestra cuando todavía no hay cursos (pegado arriba) -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Padding="20,0,20,0" Spacing="6" VerticalOptions="Start">
+                        <Label Text="Aún no hay cursos registrados..."
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="Toque el botón Agregar curso para empezar."
+                               FontSize="14"
+                               TextColor="{StaticResource Gray500}"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <!-- Diseño de cada curso en la lista (una tarjeta por curso) -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Curso">
+                        <Border BackgroundColor="White"
+                                Stroke="{StaticResource Secondary}"
+                                StrokeThickness="1"
+                                Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+
+                                <!-- Izquierda: nombre, créditos y nota obtenida sin redondear -->
+                                <VerticalStackLayout Grid.Column="0" Spacing="2" VerticalOptions="Center">
+                                    <Label Text="{Binding Nombre}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource AzulOscuro}" />
+                                    <Label Text="{Binding Creditos, StringFormat='{0} créditos'}"
+                                           FontSize="13"
+                                           TextColor="{StaticResource Gray500}" />
+                                    <Label Text="{Binding Nota, StringFormat='Nota obtenida: {0:0.##}'}"
+                                           FontSize="13"
+                                           TextColor="{StaticResource Gray500}" />
+                                </VerticalStackLayout>
+
+                                <!-- Derecha: nota final redondeada y estado con su color -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="4" HorizontalOptions="End">
+                                    <Label Text="{Binding NotaFinal, StringFormat='{0:0}'}"
+                                           FontSize="26"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource Primary}"
+                                           HorizontalTextAlignment="End" />
+                                    <Border BackgroundColor="{Binding ColorEstado}"
+                                            StrokeThickness="0"
+                                            Padding="10,3">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="10" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Estado}"
+                                               FontSize="12"
+                                               FontAttributes="Bold"
+                                               TextColor="White" />
+                                    </Border>
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
+        <!-- Fila 3: botón para ir al formulario -->
+        <Button Grid.Row="3"
+                Text="+ Agregar curso"
+                Clicked="OnAgregarClicked"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="16"
+                CornerRadius="12"
+                HeightRequest="54" />
+
+        <!-- Fila 4: pie de página con los autores -->
+        <VerticalStackLayout Grid.Row="4" Spacing="1">
+            <Label Text="Desarrollado por:"
+                   FontSize="11"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Esteban Salas Araya (C5J444)"
+                   FontSize="11"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Aletia Ledezma Araya (C4G420)"
+                   FontSize="11"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Yendri Jiménez Molina (C4G264)"
+                   FontSize="11"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

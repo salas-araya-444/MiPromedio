@@ -1,0 +1,16 @@
+<Shell
+    x:Class="MiPromedio.AppShell"
+    xmlns:local="clr-namespace:MiPromedio"
+    Title="MiPromedio"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource Primary}"
+    Shell.ForegroundColor="White"
+    Shell.TitleColor="White">
+
+    <!-- Pantalla con la que inicia la app -->
+    <ShellContent
+        Title="Inicio"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>
