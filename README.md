@@ -73,7 +73,7 @@ Para abrir y ejecutar el proyecto se necesita:
 
 **En un celular Android:**
 
-1. En el celular activar las Opciones de desarrollador (tocar 7 veces "Versión del SO" en Ajustes → Sobre el teléfono).
+1. En el celular activar las Opciones de desarrollador: en Ajustes → Acerca del teléfono, tocar 7 veces "Número de compilación" (en Samsung está dentro de Información de software; en Xiaomi/POCO es "Versión del SO").
 2. En Opciones de desarrollador activar **Depuración USB**. En celulares Xiaomi/POCO también hay que activar **Instalar vía USB**.
 3. Conectar el celular por cable, escoger "Transferencia de archivos" y aceptar el permiso de depuración.
 4. En Visual Studio escoger **Android Local Devices** y seleccionar el celular.
@@ -121,7 +121,8 @@ MiPromedio/
 │   ├── Splash/                  Pantalla de carga
 │   └── Fonts/                   Tipos de letra
 ├── DatosPrueba/                 Datos y casos para probar la app
-└── Docs/                        Explicación técnica del código
+├── Docs/                        Explicación técnica del código
+└── Investigación - Desarrollo de Software IV.txt   Enlaces del repositorio y la presentación
 ```
 
 En la carpeta `Docs` está el archivo `ExplicacionTecnica.md`, que explica con más detalle cada archivo, los controles que se usan, los eventos y el flujo de la app.
@@ -147,6 +148,8 @@ La app se probó en:
 
 - Windows 11 (Windows Machine).
 - Celular Xiaomi POCO X6 Pro con Android 14.
+- Celular Samsung Galaxy A35 con Android 16.
+- Celular Samsung Galaxy A55 con Android 17.
 
 ## Limitaciones
 
@@ -156,6 +159,11 @@ La app se probó en:
 - **iOS y Mac no se probaron:** el proyecto tiene esas plataformas, pero para compilar en iOS se necesita una Mac con Xcode.
 - **El promedio es una aproximación:** usa las notas redondeadas, pero no contempla casos especiales como cursos con nota menor a 50, que en la UCR se toman como 50 para el promedio ponderado.
 - **La escala de la nota es de 0 a 100:** la UCR registra las notas de 0 a 10, pero la app usa 0 a 100 porque es como los estudiantes suelen ver su nota.
+
+## Presentación
+
+La presentación de la investigación está en Canva:
+https://www.canva.com/design/DAHbBSNlVgI/bZQO3_17E2li0Xazd1-gVg/edit
 
 ## Referencias
 
