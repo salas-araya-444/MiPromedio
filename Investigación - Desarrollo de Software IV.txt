@@ -1,0 +1,16 @@
+Investigación.
+Desarrollo de Software IV.
+Informática Empresarial.
+Universidad de Costa Rica.
+Sede del Pacífico. 
+
+Integrantes: 
+Esteban Salas Araya (C5J444)
+Aletia Ledezma Araya (C4G420)
+Yendri Jiménez Molina (C4G264)
+
+Repositorio de Git Hub:
+https://github.com/salas-araya-444/MiPromedio.git
+
+Presentación en Canva:
+https://www.canva.com/design/DAHbBSNlVgI/bZQO3_17E2li0Xazd1-gVg/edit
